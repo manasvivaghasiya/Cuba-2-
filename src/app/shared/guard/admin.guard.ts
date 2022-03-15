@@ -1,6 +1,9 @@
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { nextSortDir } from '@swimlane/ngx-datatable';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/firebase/auth.service';
 
 @Injectable({
@@ -8,8 +11,13 @@ import { AuthService } from '../services/firebase/auth.service';
 })
 export class AdminGuard implements CanActivate {
 
+
+  H
   constructor(public authService: AuthService,
     public router: Router) { }
+
+   
+
 
   // canActivate(next: ActivatedRouteSnapshot, 
   //     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -43,5 +51,25 @@ export class AdminGuard implements CanActivate {
     }
 
   }
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {  
+  const token = this.authService.getToken();
+  if(token){
+     request = request.clone({
+      setHeaders:{Authorization:`Authorization token ${token}`}
+     });
+  }
+
+  return next.handle(request).pipe(
+    catchError((err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status ===401){
+
+        }
+      }
+      return throwError(err);
+    })
+  )
+}
 
 }

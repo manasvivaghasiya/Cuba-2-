@@ -12,6 +12,7 @@ div{
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .my-md-0 {
     margin-top: 0!important;
@@ -23,4 +24,9 @@ div{
 }
 .bootstrap{
     background-color: #f9fcff;
+}
+
+h5 {
+    color: #7a7a7a;
+    font-weight: 100;
 }

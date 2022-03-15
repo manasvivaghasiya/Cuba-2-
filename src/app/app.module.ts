@@ -9,7 +9,7 @@ import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 // for HttpClient import:
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 // for Router import:
@@ -24,7 +24,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-
+import { AuthHelpers } from './components/dashboard/auth.helpers'
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -60,7 +60,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     // for Core use:
     LoadingBarModule
   ],
-  providers: [AuthService, AdminGuard, SecureInnerPagesGuard, CookieService],
+  providers: [
+    {provide:HTTP_INTERCEPTORS, useClass: AuthHelpers , multi: true},
+  AuthService, AdminGuard, SecureInnerPagesGuard, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
