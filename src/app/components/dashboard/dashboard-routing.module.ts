@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateEventsComponent } from './create-events/create-events.component';
 import { DefaultComponent } from './default/default.component';
 import { EcommerceComponent } from './ecommerce/ecommerce.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 import { EventListComponent } from './event-list/event-list.component';
 
 
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path:'CreateEvents',
         component:CreateEventsComponent
+      },
+      {
+        path:'editEvent',
+        component:EditEventComponent
       }
     ],
   }

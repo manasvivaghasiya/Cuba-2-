@@ -24,7 +24,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
-import { AuthHelpers } from './components/dashboard/auth.helpers'
+import { AuthHelpers } from './components/dashboard/auth.helpers';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");

@@ -1,5 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { database } from 'firebase';
 import { environment } from 'src/environments/environment';
 
@@ -11,15 +12,36 @@ import { environment } from 'src/environments/environment';
 export class EventListComponent implements OnInit {
   public Events = [];
 
-  constructor(private http:HttpClient) { 
+  // today:Date = new Date();
+  // pipe = new DatePipe('en-US');
+  todayeWithPipe = null;
+  row:any;
+  prop=[];
+
+  columns = [
+    {name:'Title', prop:'title'},
+    {name:'Base Url', prop:'baseUrl'},
+    {name:'Booking Start Date Time', prop:'bookingEndDateTime'},
+    {name:'Booking End Date Time', prop:'bookingStartDateTime'},
+    {name:'Event From', prop:'eventFrom'},
+    {name:'Event To', prop:'eventTo'},
+    {name:'is Active', prop:'isActive'},
+    {name:'Action', prop:'action'}
+  ]
+  
+  constructor(private http:HttpClient,
+    private change:ChangeDetectorRef) { 
    
 
   }
 
   ngOnInit(): void {
     this.getEvents();
+    // this.todayeWithPipe = this.pipe.transform(Date.now(),'dd/MM/yyyy');
   }
 
+
+  
 getToken():string{
   return localStorage.getItem('token')
 }
@@ -28,13 +50,23 @@ getToken():string{
   getEvents(){
     this.http.get(`${environment.api}/events`).subscribe((res:any)=>{
       this.Events=res;
-      // console.log(res)
+      this.change.detectChanges();
+    
     });
   }
-  // getlocalDatetime(datetime: any): any {
-  //   var date = new Date(datetime.getTime() - (datetime.getTimezoneOffset()  (60  1000)));
-  //   date.setUTCSeconds(0);
-  //   return date
-  // }
+
+  deleteEvent(id:string){
+    debugger
+  this.http.delete(`${environment.api}/events/id=${id}`)
+  .subscribe((res:any)=>{
+    if(res.isSuccess){
+      alert('data successfully delete')
+      this.getEvents();
+    }else{
+      alert(res.message)
+    }
+  })
+  }
+
 
 }
