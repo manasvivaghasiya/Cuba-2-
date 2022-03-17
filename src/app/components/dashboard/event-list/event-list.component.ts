@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { id } from '@swimlane/ngx-datatable';
 import { database } from 'firebase';
 import { environment } from 'src/environments/environment';
 
@@ -10,19 +11,20 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./event-list.component.scss']
 })
 export class EventListComponent implements OnInit {
+ 
   public Events = [];
 
   // today:Date = new Date();
   // pipe = new DatePipe('en-US');
-  todayeWithPipe = null;
+ 
   row:any;
   prop=[];
 
   columns = [
     {name:'Title', prop:'title'},
     {name:'Base Url', prop:'baseUrl'},
-    {name:'Booking Start Date Time', prop:'bookingEndDateTime'},
-    {name:'Booking End Date Time', prop:'bookingStartDateTime'},
+    {name:'Booking Start Date Time', prop:'bookingStartDateTime'},
+    {name:'Booking End Date Time', prop:'bookingEndDateTime'},
     {name:'Event From', prop:'eventFrom'},
     {name:'Event To', prop:'eventTo'},
     {name:'is Active', prop:'isActive'},
@@ -37,7 +39,7 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEvents();
-    // this.todayeWithPipe = this.pipe.transform(Date.now(),'dd/MM/yyyy');
+
   }
 
 
@@ -55,9 +57,17 @@ getToken():string{
     });
   }
 
+  getEventsById(id){
+    this.http.get(`${environment.api}/events/${id}`)
+    .subscribe((res:any)=>{
+
+    });
+  }
+
+
   deleteEvent(id:string){
     debugger
-  this.http.delete(`${environment.api}/events/id=${id}`)
+  this.http.delete(`${environment.api}/events/${id}`)
   .subscribe((res:any)=>{
     if(res.isSuccess){
       alert('data successfully delete')
@@ -65,8 +75,21 @@ getToken():string{
     }else{
       alert(res.message)
     }
-  })
+  });
   }
+  // saveEvent(){
+  //   this.http.post(`${environment.api}/api/events`,this.Events)
+  //   .subscribe((res:any)=>{
+  //     if(res.isSuccess){
+  //       alert('data successfully added')
+  //       this.getEvents();
+      
+  //     }else{
+  //       alert(res.message);
+  //     }
+  //   });
+  // }
+
 
 
 }

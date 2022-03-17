@@ -55,7 +55,7 @@
 </div>
 <!-- ------form----------- -->
 <div class="col-sm-12">
-    <form action="">
+    <form action="" [formGroup]="EventData">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Admin Details</h4>
@@ -105,7 +105,7 @@
                                 <div class="input-group-prepend"><span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line>
                     <line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                </span>
+                            </span>
                                 </div>
                                 <input type="text" id="bookingStartDateTime" placeholder="YYYY-MM-DD" name="bookingStartDateTime" class="form-control flatpickr-input" value="" readonly="readonly"></div>
                         </div>
@@ -115,19 +115,19 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                </span>
+                                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                    </span>
                                 </div>
                                 <input type="text" id="bookingEndDateTime" placeholder="YYYY-MM-DD" name="bookingEndDateTime" class="form-control flatpickr-input" value="" readonly="readonly"></div>
-                        </div>
+                           </div>
                     </div>
                     <div class="mb-1 col-sm-12 col-md-6 col-xl-4">
                         <div class="form-group"><label for="Event From" class="">Event Start Date <span style="color: red; font-size: 15px;">*</span>
-            </label>
+                          </label>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    </span>
+                                     </span>
                                 </div>
                                 <input type="text" id="eventFrom" placeholder="YYYY-MM-DD" name="eventFrom" class="form-control flatpickr-input" value="" readonly="readonly"></div>
                         </div>
@@ -328,7 +328,7 @@
         </div>
         <!-- -------Save Event Data btn----- -->
         <div class="col-md-12 text-center pb-4">
-            <button type="submit" class="waves-effect mr-1 btn btn-primary">Save Event Data</button>
+            <button type="submit" class="waves-effect mr-1 btn btn-primary" (click)="saveEvent">Save Event Data</button>
         </div>
 
 

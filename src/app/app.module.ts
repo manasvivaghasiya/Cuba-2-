@@ -25,6 +25,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthHelpers } from './components/dashboard/auth.helpers';
+// import {CustomDatePipe} from './components/dashboard/event-list/custome.pipes';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LoginComponent,
+    // CustomDatePipe
   ],
   imports: [
     BrowserModule,

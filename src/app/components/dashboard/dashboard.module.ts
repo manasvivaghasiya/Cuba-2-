@@ -18,10 +18,11 @@ import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { CreateEventsComponent } from './create-events/create-events.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
-// import {CustomDatePipe} from './CustomDatePipe/custom.datepipe';
+// import {CustomDatePipe} from './event-list/custome.pipes';
+
 
 @NgModule({
-  declarations: [DefaultComponent, EcommerceComponent, EventListComponent, CreateEventsComponent, EditEventComponent,],
+  declarations: [DefaultComponent, EcommerceComponent, EventListComponent, CreateEventsComponent, EditEventComponent],
   imports: [
     CommonModule,
     ChartistModule,
